@@ -1,0 +1,7 @@
+[package]
+authors = ["Holger Rapp <HolgerRapp@gmx.net>"]
+name = "relto"
+version = "0.1.0"
+
+[dependencies]
+clap = "2.20.0"
