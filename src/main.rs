@@ -17,7 +17,7 @@ fn make_absolute(path: &path::Path, current_dir: &path::Path) -> path::PathBuf {
 fn main() {
     let matches = App::new("relto")
         .version("1.0")
-        .author("Holger Rapp <HolgeRapp@gmx.net>")
+        .author("Holger Rapp <HolgerRapp@gmx.net>")
         .about("Prints input paths relative to a directory.")
         .arg(Arg::with_name("DIR")
             .short("d")
