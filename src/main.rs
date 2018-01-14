@@ -1,8 +1,9 @@
+extern crate clap;
+#[macro_use] extern crate self_update;
+
 use std::env;
 use std::fs;
 use std::path;
-
-extern crate clap;
 use clap::{Arg, App};
 
 fn update() -> Result<(), Box<::std::error::Error>> {
@@ -32,7 +33,7 @@ fn make_absolute(path: &path::Path, current_dir: &path::Path) -> path::PathBuf {
 
 fn main() {
     let matches = App::new("relto")
-        .version("1.0")
+        .version(cargo_crate_version!())
         .author("Holger Rapp <HolgerRapp@gmx.net>")
         .about("Prints input paths relative to a directory.")
         .arg(Arg::with_name("DIR")
@@ -45,11 +46,11 @@ fn main() {
             .help("The input paths."))
         .arg(Arg::with_name("update")
              .long("update")
-             .help("Update binary in-place from latest release")
+             .help("Update binary in-place from latest release"))
         .get_matches();
 
     if matches.is_present("update") {
-        update.unwrap();
+        update().unwrap();
         return;
     }
 
