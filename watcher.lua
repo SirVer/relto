@@ -25,17 +25,17 @@ return {
     redirect_stderr = "/tmp/cargo.err",
     start_delay = 50,
   },
-  {
-    commands = {
-      {
-        name = "Rusty tags.",
-        command = "rusty-tags vi",
-      },
-    },
-    should_run = is_rust,
-    redirect_stderr = "/tmp/cargo.err",
-    start_delay = 50,
-  },
+  -- {
+    -- commands = {
+      -- {
+        -- name = "Rusty tags.",
+        -- command = "rusty-tags vi",
+      -- },
+    -- },
+    -- should_run = is_rust,
+    -- redirect_stderr = "/tmp/cargo.err",
+    -- start_delay = 50,
+  -- },
   -- {
     -- name = "Cargo clippy",
     -- command = "rustup run nightly cargo clippy --color=always",

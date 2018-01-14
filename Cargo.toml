@@ -5,3 +5,4 @@ version = "0.1.0"
 
 [dependencies]
 clap = "2.20.0"
+self_update = "0.4.2"

@@ -5,6 +5,22 @@ use std::path;
 extern crate clap;
 use clap::{Arg, App};
 
+fn update() -> Result<(), Box<::std::error::Error>> {
+    let target = self_update::get_target()?;
+    self_update::backends::github::Update::configure()?
+        .repo_owner("SirVer")
+        .repo_name("relto")
+        .target(&target)
+        .bin_name("relto")
+        .show_download_progress(true)
+        .show_output(false)
+        .no_confirm(true)
+        .current_version(cargo_crate_version!())
+        .build()?
+        .update()?;
+    Ok(())
+}
+
 fn make_absolute(path: &path::Path, current_dir: &path::Path) -> path::PathBuf {
     let absolute_path = if path.is_absolute() {
         path.to_owned()
@@ -27,7 +43,15 @@ fn main() {
         .arg(Arg::with_name("paths")
             .multiple(true)
             .help("The input paths."))
+        .arg(Arg::with_name("update")
+             .long("update")
+             .help("Update binary in-place from latest release")
         .get_matches();
+
+    if matches.is_present("update") {
+        update.unwrap();
+        return;
+    }
 
     let paths = matches.values_of("paths");
     if paths.is_none() {
